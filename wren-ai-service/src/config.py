@@ -87,7 +87,7 @@ class Settings(BaseSettings):
 
     def config_loader(self):
         try:
-            with open(self.config_path, "r") as file:
+            with open(self.config_path, "r", encoding="utf-8") as file:
                 return list(yaml.load_all(file, Loader=yaml.SafeLoader))
         except FileNotFoundError:
             message = f"Warning: Configuration file {self.config_path} not found. Using default settings."
