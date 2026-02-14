@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+import sys
 
 import uvicorn
 from fastapi import FastAPI
@@ -87,6 +88,7 @@ def health():
 
 
 if __name__ == "__main__":
+    loop = "asyncio" if sys.platform == "win32" else "uvloop"
     uvicorn.run(
         "src.__main__:app",
         host=settings.host,
@@ -95,6 +97,6 @@ if __name__ == "__main__":
         reload_includes=["src/**/*.py", ".env.dev", "config.yaml"],
         reload_excludes=["tests/**/*.py", "eval/**/*.py"],
         workers=1,
-        loop="uvloop",
+        loop=loop,
         http="httptools",
     )
