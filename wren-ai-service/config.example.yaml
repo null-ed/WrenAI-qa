@@ -2,8 +2,8 @@ type: llm
 provider: litellm_llm
 timeout: 120
 models:
-  - alias: default
   - model: openai/qwen3-coder-plus
+    alias: default
     context_window_size: 1000000
     api_base: https://dashscope.aliyuncs.com/compatible-mode/v1
     kwargs:
