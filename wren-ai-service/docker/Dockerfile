@@ -24,8 +24,10 @@ ENV VIRTUAL_ENV=/app/.venv \
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY src src
+COPY config.yaml /app/config.yaml
 COPY entrypoint.sh /app/entrypoint.sh
 COPY pyproject.toml pyproject.toml
 RUN chmod +x /app/entrypoint.sh
+ENV CONFIG_PATH=/app/config.yaml
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
